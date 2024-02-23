@@ -1,6 +1,6 @@
-import React from "react";
+// import React from "react";
 
-const Message = ({ user,message }: { user: boolean, message:string }) => {
+const Message = ({ user,message }: { user: boolean, message:any }) => {
 	return (
 		<div
 			className={`w-fit py-4 px-2 flex  items-center ${

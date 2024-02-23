@@ -4,11 +4,11 @@ import {
 	DropdownMenuItem,
 	DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { Button } from "@/components/ui/button";
-import { Heart, LogIn, LogOut, MoreHorizontal, Save } from "lucide-react";
+// import { Button } from "@/components/ui/button";
+import { Heart, LogIn, Save } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { logout } from "@/redux/userSlice";
 const MoreOption = () => {
 	const dispatch = useDispatch()

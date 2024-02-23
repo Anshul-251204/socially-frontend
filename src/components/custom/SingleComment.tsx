@@ -1,4 +1,4 @@
-import { Delete, Ghost } from "lucide-react";
+import { Delete } from "lucide-react";
 import { Button } from "../ui/button";
 
 const SingleComment = () => {

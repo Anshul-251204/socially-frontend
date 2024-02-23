@@ -6,7 +6,7 @@ import { MdEmail } from "react-icons/md";
 import { useNavigate, useParams } from "react-router-dom";
 import NotFount from "./secondary/NotFount";
 import { useSelector } from "react-redux";
-import toast from "react-hot-toast";
+// import toast from "react-hot-toast";
 // import { Settings } from "lucide-react";
 // import React from "react";
 // import { Link } from "react-router-dom";

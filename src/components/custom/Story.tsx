@@ -1,6 +1,6 @@
 import { useState } from "react";
 import ViewStory from "./ViewStory";
-import AddStory from "./AddStory";
+// import AddStory from "./AddStory";
 
 const Story = ({ story }: { story: any }) => {
 	const [isOpen, setIsopen] = useState<boolean>(false);
