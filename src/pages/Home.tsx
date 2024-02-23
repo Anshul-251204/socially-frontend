@@ -20,7 +20,10 @@ console.log("fdfdfd");
 			// console.log(test);
 			
 			try {
-				const response = await axios.get("/api/v1/posts/",{ withCredentials:true});
+				const response = await axios.get(
+					"https://socialy-backend-2.onrender.com/api/v1/posts/",
+					{ withCredentials: true }
+				);
 
 				setPosts(response.data.data);
 
