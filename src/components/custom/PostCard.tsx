@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import {  useRef, useState } from "react";
 import { FaRegHeart } from "react-icons/fa6";
 import { FaRegComment } from "react-icons/fa";
 import { FcLike } from "react-icons/fc";
@@ -29,18 +29,18 @@ const PostCard: React.FC<postCardProps> = ({
 		if (closeRef.current === e.target) setIscomment(!iscomment);
 	};
 
-	useEffect(()=>{
-		const islikedcheck = async ( ) => {
-			const res = await axios.get("/api/v1/likes/"+id)
-			// console.log(res);
-			if(res.data.success){
-				setIsLiked(false)
-			}
+	// useEffect(()=>{
+	// 	const islikedcheck = async ( ) => {
+	// 		const res = await axios.get("/api/v1/likes/"+id)
+	// 		// console.log(res);
+	// 		if(res.data.success){
+	// 			setIsLiked(false)
+	// 		}
 			
-		}
+	// 	}
 
-		// islikedcheck()
-	},[])
+	// 	// islikedcheck()
+	// },[])
 
 	const doLike = async () => {
 		const res = await axios.post("/api/v1/likes/"+id)
