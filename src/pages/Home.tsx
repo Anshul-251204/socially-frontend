@@ -9,6 +9,7 @@ import toast from "react-hot-toast";
 const Home = () => {
 	// const navigate = useNavigate();
 	const [posts, setPosts] = useState<any>([]);
+console.log("fdfdfd");
 
 	
 	useEffect(() => {
@@ -19,7 +20,7 @@ const Home = () => {
 			// console.log(test);
 			
 			try {
-				const response = await axios.get("/api/v1/posts/");
+				const response = await axios.get("/api/v1/posts/",{ withCredentials:true});
 
 				setPosts(response.data.data);
 
