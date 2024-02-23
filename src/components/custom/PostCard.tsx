@@ -43,7 +43,7 @@ const PostCard: React.FC<postCardProps> = ({
 	// },[])
 
 	const doLike = async () => {
-		const res = await axios.post("/api/v1/likes/"+id)
+		 await axios.post("/api/v1/likes/"+id)
 		setIsLiked(!isliked)
 		 
 		
