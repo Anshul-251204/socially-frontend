@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { MdEmail } from "react-icons/md";
 import { useNavigate, useParams } from "react-router-dom";
 import NotFount from "./secondary/NotFount";
-import { useSelector } from "react-redux";
+// import { useSelector } from "react-redux";
 // import toast from "react-hot-toast";
 // import { Settings } from "lucide-react";
 // import React from "react";
@@ -14,7 +14,7 @@ import { useSelector } from "react-redux";
 const Profile = () => {
 	const params = useParams();
 	const userName: string | undefined = params.userName;
-	const auth = useSelector((state:any)=> state.auth.user)
+	// const auth = useSelector((state:any)=> state.auth.user)
 	const navigate = useNavigate();
 	const [userProfile, setUserProfile] = useState<any>();
 	const [posts, setPost] = useState<any>([]);
