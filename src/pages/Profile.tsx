@@ -1,101 +1,126 @@
-import MoreOption from "@/components/custom/MoreOption";
 import SmallPostCard from "@/components/custom/SmallPostCard";
 import { Button } from "@/components/ui/button";
-import { Settings } from "lucide-react";
-import React from "react";
-import { Link } from "react-router-dom";
+import axios from "axios";
+import { useEffect, useState } from "react";
+import { MdEmail } from "react-icons/md";
+import { useNavigate, useParams } from "react-router-dom";
+import NotFount from "./secondary/NotFount";
+import { useSelector } from "react-redux";
+import toast from "react-hot-toast";
+// import { Settings } from "lucide-react";
+// import React from "react";
+// import { Link } from "react-router-dom";
 
 const Profile = () => {
-	const auth = true;
+	const params = useParams();
+	const userName: string | undefined = params.userName;
+	const auth = useSelector((state:any)=> state.auth.user)
+	const navigate = useNavigate();
+	const [userProfile, setUserProfile] = useState<any>();
+	const [posts, setPost] = useState<any>([]);
+	const [isFollow, setIsFollow] = useState<boolean>();
+
+	useEffect(() => {
+		const fetchProfile = async (userName: string | undefined) => {
+			const res = await axios.get("/api/v1/users/" + userName);
+			setUserProfile(res.data.data);
+			setPost(res.data.data.posts);
+			setIsFollow(res.data.data.isfollow);
+		};
+
+		fetchProfile(userName);
+	}, [isFollow]);
+
+	const followOrUnfollow = async () => {
+		await axios.post("/api/v1/follows/" + userProfile?._id);
+		setIsFollow(!isFollow);
+	};
+
+	const sendmessage = () => {
+		navigate("/coversation/"+userProfile._id);
+		console.log(userProfile._id);
+		
+	}
+
+	
+
 
 	return (
-		
-		<div className="  box-borderbox-border text-foreground bg-background w-full h-full flex flex-col px-10 items-center max-sm:h-[92vh] max-sm:p-0 max-sm:pt-10 ">
-			<div className="max-h-full no-scrollbar overflow-auto max-sm:w-full ">
-				<div className="flex justify-center items-center py-4 gap-4 h-[40%] w-full border-b-foreground border-b max-sm:hidden ">
-					<img
-						className=" h-[15vw] w-[15vw] object-cover object-center rounded-[50%] "
-						src="https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fHBlb3BsZXxlbnwwfHwwfHx8MA%3D%3D"
-						alt=""
-					/>
-					<div className=" w-[40%] h-[100%] flex flex-col justify-center gap-4 p-4   ">
-						<div className=" w-[100%] flex items-center gap-4 text-xl font-medium ">
-							<p>@ anshul._12</p>
-							<MoreOption />
-							<Button size={"lg"}>follow </Button>
-						</div>
-						<div className=" w-[100%] flex justify-between text-lg">
-							<div className="flex gap-2">
-								<p>4</p>
-								<p>Post</p>
-							</div>
-							<div className="flex gap-2">
-								<p>30</p>
-								<p>Follower</p>
-							</div>
-							<div className="flex gap-2">
-								<p>34</p>
-								<p>Following</p>
-							</div>
-						</div>
-						<div className=" w-[100%]">
-							<p>
-								Lorem, ipsum dolor sit amet consectetur
-								adipisicing elit. Sapiente nobis reiciendis quis
-								sed.?{" "}
-							</p>
-						</div>
-					</div>
-				</div>
-
-				<div className="w-full h-[30%] flex flex-col my-8 pb-4 border-b-2 sm:hidden">
-					<div className="flex w-full gap-8">
+		<div className=" w-full h-full text-foreground bg-background pt-14 sm:pt-0 ">
+			<div className="w-full max-h-full overflow-y-auto no-scrollbar ">
+				<div className=" min-h-[30vh] w-full flex flex-col items-center ">
+					<div className="w-full flex justify-center items-center gap-4 max-sm:pt-6 ">
 						<img
-							className=" min-w-[20vw] h-[20vw] rounded-[50%] object-cover  "
-							src="https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fHBlb3BsZXxlbnwwfHwwfHx8MA%3D%3D"
+							className=" h-[60px] w-[60px] rounded-full object-cover object-center sm:h-[15vw] sm:w-[15vw] "
+							src={userProfile?.avatar.url}
 							alt=""
 						/>
-						<div className=" flex items-center justify-evenly w-[80%] ">
-							<p>@ anshul._12</p>
-							<Button size={"lg"}>follow </Button>
+
+						<div className="w-[30%] flex flex-col justify-center gap-4  max-sm:w-[60%]">
+							<p className="text-xl max-sm:text-sm">
+								{userProfile?.fullName}
+							</p>
+
+							<div className="text-lg max-sm:text-sm flex gap-4 justify-between items-center">
+								<p>@ {userProfile?.userName}</p>
+
+								<Button onClick={followOrUnfollow}>
+									{isFollow ? "UnFollow" : "Follow"}
+								</Button>
+							</div>
+
+							<div className="text-lg max-sm:text-sm flex gap-4 max-sm:flex flex-col">
+								<p className="flex gap-4 items-center">
+									{userProfile?.email} <MdEmail />
+								</p>
+
+								<Button
+									className=" max-sm:hidden "
+									onClick={sendmessage}
+								>
+									Message
+								</Button>
+							</div>
+							<Button
+								className="sm:hidden "
+								onClick={sendmessage}
+							>
+								Message
+							</Button>
+
+							<div className="flex gap-4 justify-between text-lg">
+								<p className="max-sm:text-sm">
+									{posts.length} Post
+								</p>
+								<p className="max-sm:text-sm">
+									{userProfile?.follower} Follower
+								</p>
+								<p className="max-sm:text-sm">
+									{userProfile?.following} Following
+								</p>
+							</div>
 						</div>
+					</div>
+
+					<p className="w-[70%] text-xl my-8 max-sm:text-sm max-sm:w-full">
+						{userProfile?.bio}
+					</p>
+				</div>
+				{posts?.length == 0 ? (
+					<NotFount title="NO Posts" />
+				) : (
+					<div className=" border-t pt-4 min-h-[50vh] w-full flex flex-wrap ">
+						
+						{posts.map((post: any, idx: number) => (
+							<SmallPostCard
+								post={post}
+								key={idx}
+								userName={userProfile?.userName}
+							/>
+						))}
 						
 					</div>
-
-					<div className="   ">
-						<div className="flex justify-between my-4 ">
-							<div className="flex gap-2">
-								<p>4</p>
-								<p>Post</p>
-							</div>
-							<div className="flex gap-2">
-								<p>30</p>
-								<p>Follower</p>
-							</div>
-							<div className="flex gap-2">
-								<p>34</p>
-								<p>Following</p>
-							</div>
-						</div>
-						<div className=" w-[100%]">
-							<p>
-								Lorem, ipsum dolor sit amet consectetur
-								adipisicing elit. Sapiente nobis reiciendis quis
-								sed.?{" "}
-							</p>
-						</div>
-					</div>
-				</div>
-
-				<div className=" h-[60%] w-full flex flex-wrap max-sm:h-[50%] ">
-					<SmallPostCard />
-					<SmallPostCard />
-					<SmallPostCard />
-					<SmallPostCard />
-					<SmallPostCard />
-					<SmallPostCard />
-					<SmallPostCard />
-				</div>
+				)}
 			</div>
 		</div>
 	);

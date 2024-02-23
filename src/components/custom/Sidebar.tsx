@@ -3,6 +3,7 @@ import {
 	Home,
 	LogIn,
 	LogInIcon,
+	MessageCircle,
 	// LogOut,
 	MoreHorizontal,
 	PlusSquare,
@@ -11,19 +12,26 @@ import {
 	Settings,
 } from "lucide-react";
 import { MdOutlineExplore } from "react-icons/md";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {
 	DropdownMenu,
 	DropdownMenuContent,
 	DropdownMenuItem,
 	DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { Button } from "../ui/button";
 import { ModeToggle } from "../mode-toggle";
 import { CgProfile } from "react-icons/cg";
+import { useDispatch, useSelector } from "react-redux";
+import axios from "axios";
+import { logout } from "@/redux/userSlice";
 // import { SiGnuprivacyguard } from "react-icons/si";
 const Sidebar: React.FC = () => {
-	const auth = true;
+	const navigate = useNavigate();
+	const dispatch = useDispatch();
+	const auth = useSelector((state: any) => state.auth.user);
+
+	
+
 	const linkOptions = [
 		{
 			path: "",
@@ -41,9 +49,9 @@ const Sidebar: React.FC = () => {
 			icon: <MdOutlineExplore />,
 		},
 		{
-			path: "profile",
-			text: "Profile",
-			icon: <CgProfile size={"1.5rem"} />,
+			path: "conversation",
+			text: "Message",
+			icon: <MessageCircle />,
 		},
 		{
 			path: "create",
@@ -51,6 +59,14 @@ const Sidebar: React.FC = () => {
 			icon: <PlusSquare />,
 		},
 	];
+
+	async function logoutHandler() {
+		await axios.post("/api/v1/users/logout", {}, { withCredentials: true });
+		dispatch(logout());
+		navigate("/");
+		window.location.reload();
+
+	}
 
 	return (
 		<div className="w-[20%] h-full flex flex-col items-center justify-between pb-8 border-r max-sm:hidden">
@@ -66,6 +82,15 @@ const Sidebar: React.FC = () => {
 						</div>
 					</Link>
 				))}
+
+				{auth ? (
+					<Link to={`/profile/${auth.userName}`}>
+						<div className="flex items-center gap-4 pt-8  text-xl">
+							<CgProfile size={"1.5rem"} />
+							<p>Profile</p>
+						</div>
+					</Link>
+				) : null}
 				<div className=" gap-4 pt-8 ">
 					<ModeToggle />
 				</div>
@@ -81,14 +106,12 @@ const Sidebar: React.FC = () => {
 						</DropdownMenuTrigger>
 						<DropdownMenuContent>
 							<DropdownMenuItem>
-								<Link 
-								to={"save"}
-								className="flex gap-4 w-full">
+								<Link to={"save"} className="flex gap-4 w-full">
 									<Save />
 									Save
 								</Link>
 							</DropdownMenuItem>
-							<DropdownMenuItem>
+							{/* <DropdownMenuItem>
 								<Link
 									to={"/login"}
 									className="flex gap-4 w-full "
@@ -96,35 +119,35 @@ const Sidebar: React.FC = () => {
 									<Heart />
 									Your Comments
 								</Link>
-							</DropdownMenuItem>
+							</DropdownMenuItem> */}
 							<DropdownMenuItem>
 								<Link
-									to={"/login"}
+									to={"/likedpost"}
 									className="flex gap-4 w-full "
 								>
-									{/* <Button
-										variant={"ghost"}
-										className="flex gap-4"
-									> */}
 									<Heart />
 									Your liked
-									{/* </Button> */}
 								</Link>
 							</DropdownMenuItem>
-							<DropdownMenuItem>
-								<Link
-									to={"/login"}
-									className="flex gap-4 w-full "
-								>
-									{/* <Button
-										variant={"ghost"}
-										className="flex gap-4"
-									> */}
-									<LogIn />
-									Login
-									{/* </Button> */}
-								</Link>
-							</DropdownMenuItem>
+							{!auth ? (
+								<DropdownMenuItem>
+									<Link
+										to={"/login"}
+										className="flex gap-4 w-full "
+									>
+										<LogIn />
+										Login
+									</Link>
+								</DropdownMenuItem>
+							) : (
+								<DropdownMenuItem
+								onClick={logoutHandler} 
+								className="flex gap-4 w-full ">
+									
+										<LogIn />
+										logout
+								</DropdownMenuItem>
+							)}
 						</DropdownMenuContent>
 					</DropdownMenu>
 					<Link to={!auth ? "/SignUp" : "/setting"}>

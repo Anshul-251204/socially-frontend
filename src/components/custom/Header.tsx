@@ -1,13 +1,23 @@
-import { PlusSquare } from "lucide-react";
+import { MessageCircle, PlusSquare } from "lucide-react";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 const Header = () => {
+	const auth = useSelector((state:any)=> state.auth.user)
+
 	return (
 		<div className="flex justify-evenly gap-4 fixed w-full  items-center border-b  sm:hidden">
-			<h1 className=" mb-4 text-4xl  text-primary  ">Socialy </h1>
+			<Link to={"/"} className=" mb-4 text-4xl  text-primary  ">Socialy </Link >
 
-			<Link to={"create"}>
-				<PlusSquare />
-			</Link>
+			{auth ? (
+				<>
+					<Link to={"create"}>
+						<PlusSquare />
+					</Link>
+					<Link to={"/conversation"}>
+						<MessageCircle />
+					</Link>{" "}
+				</>
+			) : null}
 		</div>
 	);
 };

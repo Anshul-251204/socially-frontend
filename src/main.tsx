@@ -2,7 +2,7 @@ import ReactDOM from "react-dom/client";
 import App from "./App.tsx";
 import "./index.css";
 import { ThemeProvider } from "./components/theme-provider.tsx";
-import { createBrowserRouter, RouterProvider,  } from "react-router-dom";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Home from "./pages/Home.tsx";
 import Explore from "./pages/Explore.tsx";
 import Create from "./pages/Create.tsx";
@@ -13,10 +13,14 @@ import Signup from "./pages/Signup.tsx";
 import Setting from "./pages/Setting.tsx";
 import ChangeEmailAndName from "./pages/secondary/ChangeEmailAndName.tsx";
 import ChangeProfile from "./pages/secondary/ChangeProfile.tsx";
-
-
-
-
+import Conversation from "./pages/Conversation.tsx";
+import MessagePage from "./pages/MessagePage.tsx";
+import { Toaster } from "react-hot-toast";
+import { Provider } from "react-redux";
+import { store } from "./redux/store.ts";
+import LikedPost from "./pages/secondary/LikedPost.tsx";
+import AllComment from "./pages/secondary/AllComment.tsx";
+import UploadStory from "./pages/secondary/UploadStroy.tsx";
 
 const router = createBrowserRouter([
 	{
@@ -40,7 +44,7 @@ const router = createBrowserRouter([
 				element: <Create />,
 			},
 			{
-				path: "profile",
+				path: "profile/:userName",
 				element: <Profile />,
 			},
 			{
@@ -54,6 +58,26 @@ const router = createBrowserRouter([
 			{
 				path: "changeavatar",
 				element: <ChangeProfile />,
+			},
+			{
+				path: "conversation",
+				element: <Conversation />,
+			},
+			{
+				path: "coversation/:userId",
+				element: <MessagePage />,
+			},
+			{
+				path: "likedpost",
+				element: <LikedPost />,
+			},
+			{
+				path: "comments",
+				element: <AllComment />,
+			},
+			{
+				path: "uploadstory",
+				element: <UploadStory />,
 			},
 		],
 	},
@@ -99,7 +123,10 @@ const router = createBrowserRouter([
 // ]);
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
-	<ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
-		<RouterProvider router={router} />
-	</ThemeProvider>
+	<Provider store={store}>
+		<ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
+			<RouterProvider router={router} />
+			<Toaster />
+		</ThemeProvider>
+	</Provider>
 );
