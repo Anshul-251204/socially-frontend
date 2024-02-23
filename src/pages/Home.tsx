@@ -1,6 +1,7 @@
 import AllStroy from "@/components/custom/AllStroy";
 import PostCard from "@/components/custom/PostCard";
 import axios from "axios";
+import test from "node:test";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 // import { useNavigate } from "react-router-dom";
@@ -11,7 +12,12 @@ const Home = () => {
 
 	
 	useEffect(() => {
+
+
 		async function fetchPost() {
+			// const test = await axios.get("/")
+			// console.log(test);
+			
 			try {
 				const response = await axios.get("/api/v1/posts/");
 
