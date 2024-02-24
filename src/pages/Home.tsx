@@ -21,7 +21,7 @@ console.log("fdfdfd");
 			
 			try {
 				const response = await axios.get(
-					"https://socialy-backend-2.onrender.com/api/v1/posts/",
+				"/api/v1/posts/",
 					{ withCredentials: true }
 				);
 
