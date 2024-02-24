@@ -4,7 +4,9 @@ import { Button } from "../ui/button";
 const SingleDeletePost = ({post}:{post:any}) => {
 	
 	const deletePost = async () => {
-		await axios.delete("/api/v1/posts/" + post._id);
+		await axios.delete(
+			"https://socialy-backend-2.onrender.com/api/v1/posts/" + post._id
+		);
 	};
   return (
 		<div className="w-full flex flex-col gap-4">

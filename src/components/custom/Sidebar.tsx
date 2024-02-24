@@ -61,7 +61,11 @@ const Sidebar: React.FC = () => {
 	];
 
 	async function logoutHandler() {
-		await axios.post("/api/v1/users/logout", {}, { withCredentials: true });
+		await axios.post(
+			"https://socialy-backend-2.onrender.com/api/v1/users/logout",
+			{},
+			{ withCredentials: true }
+		);
 		dispatch(logout());
 		navigate("/");
 		window.location.reload();

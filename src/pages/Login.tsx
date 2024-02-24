@@ -28,7 +28,7 @@ const Login = () => {
 		e.preventDefault();
 		try {
 			const response = await axios.post(
-				"/api/v1/users/login",
+				"https://socialy-backend-2.onrender.com/api/v1/users/login",
 				{ userName, password },
 				{ withCredentials: true }
 			);

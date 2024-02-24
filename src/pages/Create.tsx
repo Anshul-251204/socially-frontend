@@ -20,7 +20,7 @@ const Create = () => {
 			const upload = async () => {
 
 				const res = await axios.post(
-					"/api/v1/posts/",
+					"https://socialy-backend-2.onrender.com/api/v1/posts/",
 					formData,
 					{ withCredentials: true }
 				);

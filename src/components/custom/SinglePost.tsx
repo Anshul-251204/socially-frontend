@@ -35,7 +35,10 @@ const SignlePost: React.FC<SinglePostProps> = ({
 	useEffect(() => {
 		async function fetchComments() {
 			try {
-				const response = await axios.get("/api/v1/comments/" + id);
+				const response = await axios.get(
+					"https://socialy-backend-2.onrender.com/api/v1/comments/" +
+						id
+				);
 
 				setComments(response.data.data);
 			} catch (error: any) {
@@ -48,7 +51,10 @@ const SignlePost: React.FC<SinglePostProps> = ({
 
 	const addComment = async (id: number) => {
 	try {
-			const res = await axios.post(`/api/v1/comments/${id}`, { content });
+			const res = await axios.post(
+				`https://socialy-backend-2.onrender.com/api/v1/comments/${id}`,
+				{ content }
+			);
 			setRefresht(!refresh);
 			toast.success(res.data.message)
 			setContent("")

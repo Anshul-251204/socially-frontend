@@ -10,7 +10,9 @@ const Conversation: React.FC = () => {
 
 	useEffect(()=>{
 		const fetchconversation = async()=>{
-			const res = await axios.get("/api/v1/conversations/")
+			const res = await axios.get(
+				"https://socialy-backend-2.onrender.com/api/v1/conversations/"
+			);
 			// console.log(res);
 			
 			setConversation(res.data.data)

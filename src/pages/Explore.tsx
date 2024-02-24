@@ -9,7 +9,9 @@ const Explore = () => {
 	useEffect(() => {
 		async function fetchPost() {
 			try {
-				const response = await axios.get("/api/v1/posts/");
+				const response = await axios.get(
+					"https://socialy-backend-2.onrender.com/api/v1/posts/"
+				);
 
 				setPosts(response.data.data);
 			} catch (error: any) {

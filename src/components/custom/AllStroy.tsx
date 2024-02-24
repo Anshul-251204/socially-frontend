@@ -9,7 +9,9 @@ const AllStroy = () => {
 	const auth = useSelector((state: any) => state.auth.user);
 	useEffect(() => {
 		const fetchStory = async () => {
-			const res = await axios.get("/api/v1/stories/");
+			const res = await axios.get(
+				"https://socialy-backend-2.onrender.com/api/v1/stories/"
+			);
 			SetStories(res.data.data);
 		};
 

@@ -18,7 +18,8 @@ const MessagePage = () => {
 	useEffect(() => {
 		const fetchMessage = async () => {
 			const res = await axios.get(
-				"/api/v1/messages/get/" + params.userId
+				"https://socialy-backend-2.onrender.com/api/v1/messages/get/" +
+					params.userId
 			);
 
 			setAllMessage(res.data.data);
@@ -27,7 +28,11 @@ const MessagePage = () => {
 	}, [realTime]);
 
 	async function sendMessage() {
-		await axios.post("/api/v1/messages/send/" + params.userId, { message });
+		await axios.post(
+			"https://socialy-backend-2.onrender.com/api/v1/messages/send/" +
+				params.userId,
+			{ message }
+		);
 		setMessage("");
 		setRealtime(!realTime);
 	}

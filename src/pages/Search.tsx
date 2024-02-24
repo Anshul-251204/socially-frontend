@@ -15,7 +15,9 @@ const Search: React.FC = () => {
 			if (!qurey) {
 				toast("Enter User Name 🥲");
 			}
-			const res = await axios.get(`/api/v1/users/search?query=${qurey}`);
+			const res = await axios.get(
+				`https://socialy-backend-2.onrender.com/api/v1/users/search?query=${qurey}`
+			);
 			setSearchUsers(res.data.data);
 
 			if (res.data.data.length == 0) toast("User Not Found🙄");
@@ -25,7 +27,7 @@ const Search: React.FC = () => {
 	};
 
 	return (
-		<div className="   box-border text-foreground bg-background w-full h-full flex flex-col items-center  max-sm:h-[92vh] max-sm:pt-16 ">
+		<div className=" box-border text-foreground bg-background w-full h-full flex flex-col items-center  max-sm:h-[92vh] max-sm:pt-16 ">
 			<div className="w-full flex gap-2 items-center">
 				<Input
 					placeholder="Search..."
