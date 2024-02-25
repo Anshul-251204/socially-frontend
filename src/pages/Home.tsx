@@ -16,7 +16,7 @@ const Home = () => {
 			
 			try {
 				const response = await axios.get(
-					"/api/v1/posts/",
+					"https://socialy-backend-tfmn.onrender.com/api/v1/posts/",
 					{
 						withCredentials: true,
 					}
