@@ -38,7 +38,7 @@ const SinglePostSmall: React.FC<SinglePostProps> = ({
 		async function fetchComments() {
 			try {
 				const response = await axios.get(
-					"https://socialy-backend-2.onrender.com/api/v1/comments/" +
+					"/api/v1/comments/" +
 						id
 				);
 
@@ -54,7 +54,7 @@ const SinglePostSmall: React.FC<SinglePostProps> = ({
 	const addComment = async (id: number | string) => {
 		try {
 			const res = await axios.post(
-				`https://socialy-backend-2.onrender.com/api/v1/comments/${id}`,
+				`/api/v1/comments/${id}`,
 				{ content }
 			);
 			setRefresht(!refresh);
@@ -71,7 +71,7 @@ const SinglePostSmall: React.FC<SinglePostProps> = ({
 
 	const deletePost = async (id:any) => {
 		await axios.delete(
-			"https://socialy-backend-2.onrender.com/api/v1/posts/" + id
+			"/api/v1/posts/" + id
 		);
 		window.location.reload()
 	}
@@ -95,7 +95,7 @@ const SinglePostSmall: React.FC<SinglePostProps> = ({
 						variant={"outline"}
 						onClick={() => setIscomment(!iscomment)}
 					>
-						<X />{" "}
+						<X />
 					</Button>
 				</div>
 				<div className=" w-[100%] bg-background my-4   p-1 flex gap-2">

@@ -23,9 +23,11 @@ const Profile = () => {
 	useEffect(() => {
 		const fetchProfile = async (userName: string | undefined) => {
 			const res = await axios.get(
-				"https://socialy-backend-2.onrender.com/api/v1/users/" +
+				"/api/v1/users/" +
 					userName
 			);
+			console.log(res);
+			
 			setUserProfile(res.data.data);
 			setPost(res.data.data.posts);
 			setIsFollow(res.data.data.isfollow);
@@ -36,7 +38,7 @@ const Profile = () => {
 
 	const followOrUnfollow = async () => {
 		await axios.post(
-			"https://socialy-backend-2.onrender.com/api/v1/follows/" +
+			"/api/v1/follows/" +
 				userProfile?._id
 		);
 		setIsFollow(!isFollow);

@@ -36,7 +36,7 @@ const SignlePost: React.FC<SinglePostProps> = ({
 		async function fetchComments() {
 			try {
 				const response = await axios.get(
-					"https://socialy-backend-2.onrender.com/api/v1/comments/" +
+					"/api/v1/comments/" +
 						id
 				);
 
@@ -52,7 +52,7 @@ const SignlePost: React.FC<SinglePostProps> = ({
 	const addComment = async (id: number) => {
 	try {
 			const res = await axios.post(
-				`https://socialy-backend-2.onrender.com/api/v1/comments/${id}`,
+				`/api/v1/comments/${id}`,
 				{ content }
 			);
 			setRefresht(!refresh);

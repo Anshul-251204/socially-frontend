@@ -8,30 +8,30 @@ import toast from "react-hot-toast";
 
 const Home = () => {
 	// const navigate = useNavigate();
-	const [posts, setPosts] = useState<any>([]);
-console.log("fdfdfd");
+	const [posts, setPosts] = useState<any>(["d"]);
 
-	
 	useEffect(() => {
-
-
 		async function fetchPost() {
 			// const test = await axios.get("/")
-			// console.log(test);
 			
 			try {
 				const response = await axios.get(
-				"/api/v1/posts/",
-					{ withCredentials: true }
+					"/api/v1/posts/",
+					{
+						withCredentials: true,
+					}
 				);
+				
 
 				setPosts(response.data.data);
 
 				// navigate("/");
 			} catch (error: any) {
 				console.log(error);
-				
-				toast.error("Internal Server error please try after some time 🥲⏳");
+
+				toast.error(
+					"Internal Server error please try after some time 🥲⏳"
+				);
 			}
 
 			toast;
@@ -41,9 +41,8 @@ console.log("fdfdfd");
 	}, []);
 	return (
 		<div className="box-border text-foreground bg-background w-full h-full flex flex-col items-center  max-sm:h-[92vh] max-sm:pt-14">
-
 			<div className="w-[40%] max-h-full no-scrollbar overflow-auto max-sm:w-full ">
-				<AllStroy/>
+				<AllStroy />
 				{posts.map((post: any, idx: number) => (
 					<PostCard
 						key={idx}

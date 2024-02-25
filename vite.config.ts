@@ -12,6 +12,11 @@ import { defineConfig } from "vite";
 
 export default defineConfig({
 	plugins: [react()],
+	server: {
+		proxy: {
+			"/api": "https://socialy-backend-tfmn.onrender.com",
+		},
+	},
 
 	resolve: {
 		alias: {

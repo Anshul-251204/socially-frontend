@@ -12,7 +12,7 @@ const SearchAccount: React.FC<SearchAccountProps> = ({
 }) => {
 	return (
 		<Link
-			to={"https://socialy-backend-2.onrender.com/profile/" + userName}
+			to={"/profile/" + userName}
 			className="w-[100%] my-1 border rounded-md flex items-center gap-4 p-4 sm:w-[60%]"
 		>
 			{/* <div className="w-[100%] my-1 border rounded-md flex items-center gap-4 p-4 sm:w-[60%] "> */}
