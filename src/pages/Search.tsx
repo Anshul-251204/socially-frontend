@@ -16,7 +16,7 @@ const Search: React.FC = () => {
 				toast("Enter User Name 🥲");
 			}
 			const res = await axios.get(
-				`/api/v1/users/search?query=${qurey}`
+				`https://socialy-backend-tfmn.onrender.com/api/v1/users/search?query=${qurey}`
 			);
 			setSearchUsers(res.data.data);
 

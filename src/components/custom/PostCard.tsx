@@ -44,7 +44,7 @@ const PostCard: React.FC<postCardProps> = ({
 
 	const doLike = async () => {
 		 await axios.post(
-				"/api/v1/likes/" + id
+				"https://socialy-backend-tfmn.onrender.com/api/v1/likes/" + id
 			);
 		setIsLiked(!isliked)
 		 

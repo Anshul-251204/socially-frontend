@@ -18,7 +18,7 @@ const MessagePage = () => {
 	useEffect(() => {
 		const fetchMessage = async () => {
 			const res = await axios.get(
-				"/api/v1/messages/get/" +
+				"https://socialy-backend-tfmn.onrender.com/api/v1/messages/get/" +
 					params.userId
 			);
 
@@ -29,7 +29,7 @@ const MessagePage = () => {
 
 	async function sendMessage() {
 		await axios.post(
-			"/api/v1/messages/send/" +
+			"https://socialy-backend-tfmn.onrender.com/api/v1/messages/send/" +
 				params.userId,
 			{ message }
 		);

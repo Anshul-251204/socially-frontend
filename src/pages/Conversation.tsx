@@ -11,7 +11,7 @@ const Conversation: React.FC = () => {
 	useEffect(()=>{
 		const fetchconversation = async()=>{
 			const res = await axios.get(
-				"/api/v1/conversations/"
+				"https://socialy-backend-tfmn.onrender.com/api/v1/conversations/"
 			);
 			// console.log(res);
 			

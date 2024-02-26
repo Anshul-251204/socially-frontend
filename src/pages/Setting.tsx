@@ -12,7 +12,7 @@ const Setting: React.FC = () => {
 	const navigate = useNavigate();
 	async function logoutHandler() {
 		await axios.post(
-			"/api/v1/users/logout",
+			"https://socialy-backend-tfmn.onrender.com/api/v1/users/logout",
 			{},
 			{ withCredentials: true }
 		);

@@ -10,7 +10,10 @@ const AllStroy = () => {
 	useEffect(() => {
 		const fetchStory = async () => {
 			const res = await axios.get(
-				"/api/v1/stories/"
+				"https://socialy-backend-tfmn.onrender.com/api/v1/stories",
+				{
+					withCredentials: true,
+				}
 			);
 			SetStories(res.data.data);
 		};

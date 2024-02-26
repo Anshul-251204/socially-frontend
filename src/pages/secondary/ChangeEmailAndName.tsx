@@ -16,7 +16,7 @@ const ChangeEmailAndName: React.FC = () => {
 
 		try {
 			const response = await axios.patch(
-				"/api/v1/users/update",
+				"https://socialy-backend-tfmn.onrender.com/api/v1/users/update",
 				{ email, fullName },
 				{ withCredentials: true }
 			);

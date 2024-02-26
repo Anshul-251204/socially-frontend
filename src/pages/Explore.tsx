@@ -10,7 +10,7 @@ const Explore = () => {
 		async function fetchPost() {
 			try {
 				const response = await axios.get(
-					"/api/v1/posts/"
+					"https://socialy-backend-tfmn.onrender.com/api/v1/posts/"
 				);
 
 				setPosts(response.data.data);

@@ -28,7 +28,7 @@ const Login = () => {
 		e.preventDefault();
 		try {
 			const response = await axios.post(
-				"/api/v1/users/login",
+				"https://socialy-backend-tfmn.onrender.com/api/v1/users/login",
 				{ userName, password },
 				{ withCredentials: true }
 			);

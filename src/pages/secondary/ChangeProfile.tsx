@@ -18,7 +18,10 @@ const ChangeProfile: React.FC = () => {
 		const form = e.target as HTMLFormElement;
 		const formData = new FormData(form);
 		const ChangeAvatar = async () => {
-			const res = await axios.patch("/api/v1/users/avatar", formData);
+			const res = await axios.patch(
+				"https://socialy-backend-tfmn.onrender.com/api/v1/users/avatar",
+				formData
+			);
 			dispatch(login(res.data.data))
 			return res
 		};

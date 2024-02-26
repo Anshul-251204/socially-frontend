@@ -22,7 +22,7 @@ const Signup = () => {
 		const formData = new FormData(form);
 		try {
 			const response = await axios.post(
-				"/api/v1/users",
+				"https://socialy-backend-tfmn.onrender.com/api/v1/users",
 				formData,
 				{ withCredentials: true }
 			);

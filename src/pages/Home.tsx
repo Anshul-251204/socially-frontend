@@ -27,6 +27,7 @@ const Home = () => {
 
 				// navigate("/");
 			} catch (error: any) {
+
 				console.log(error);
 
 				toast.error(

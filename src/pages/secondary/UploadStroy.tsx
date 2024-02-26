@@ -19,7 +19,11 @@ const UploadStory: React.FC = () => {
 
 			const UploadStory = async () => {
 
-				return await axios.post("/api/v1/stories/", formData,{withCredentials:true});
+				return await axios.post(
+					"https://socialy-backend-tfmn.onrender.com/api/v1/stories/",
+					formData,
+					{ withCredentials: true }
+				);
 
 			};
 			console.log(UploadStory());

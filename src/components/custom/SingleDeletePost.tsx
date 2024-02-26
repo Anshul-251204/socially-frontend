@@ -5,7 +5,7 @@ const SingleDeletePost = ({post}:{post:any}) => {
 	
 	const deletePost = async () => {
 		await axios.delete(
-			"/api/v1/posts/" + post._id
+			"https://socialy-backend-tfmn.onrender.com/api/v1/posts/" + post._id
 		);
 	};
   return (

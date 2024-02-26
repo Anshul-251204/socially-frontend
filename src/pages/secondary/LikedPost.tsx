@@ -6,7 +6,9 @@ const LikedPost = () => {
 	const [likedPost, setLikedPost] = useState<any>([]);
 	useEffect(() => {
 		const fetchLikedPost = async () => {
-			const res = await axios.get("/api/v1/likes");
+			const res = await axios.get(
+				"https://socialy-backend-tfmn.onrender.com/api/v1/likes"
+			);
 			setLikedPost(res.data.data);
 		};
 
