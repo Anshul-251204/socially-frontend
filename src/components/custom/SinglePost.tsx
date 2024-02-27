@@ -53,7 +53,9 @@ const SignlePost: React.FC<SinglePostProps> = ({
 	try {
 			const res = await axios.post(
 				`https://socialy-backend-tfmn.onrender.com/api/v1/comments/${id}`,
-				{ content }
+				{ content },{
+					withCredentials: true,
+				}
 			);
 			setRefresht(!refresh);
 			toast.success(res.data.message)
