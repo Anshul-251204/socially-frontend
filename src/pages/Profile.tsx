@@ -24,7 +24,7 @@ const Profile = () => {
 		const fetchProfile = async (userName: string | undefined) => {
 			const res = await axios.get(
 				"https://socialy-backend-tfmn.onrender.com/api/v1/users/" +
-					userName
+					userName, {withCredentials:true}
 			);
 			// console.log(res);
 			
